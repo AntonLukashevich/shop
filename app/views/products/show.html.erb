@@ -3,4 +3,33 @@
   <%= @product.title %>
 </p>
 
+
+<h2>Attrs</h2>
+<p><strong>Attr:		</strong><strong>		Value:</strong></p>
+<% @product.product_attrs.each do |attrv| %>
+  <p>
+    
+    <%= attrv.title %> <%= attrv.value %>
+  </p>
+
+ 
+<% end %>
+
+
+<h2>Add a attr:</h2>
+<%= form_with(model: [ @product, @product.product_attrs.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :Value %><br>
+    <%= form.text_area :value %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+
 <%= link_to 'Back', products_path %>
