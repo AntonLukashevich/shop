@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_180945) do
+ActiveRecord::Schema.define(version: 2020_10_15_165608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "emails", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_emails_on_user_id"
+  end
+
+  create_table "phones", force: :cascade do |t|
+    t.string "phone"
+    t.string "operator"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_phones_on_user_id"
+  end
 
   create_table "product_attrs", force: :cascade do |t|
     t.string "title"
@@ -36,5 +59,26 @@ ActiveRecord::Schema.define(version: 2020_09_15_180945) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "title"
+    t.date "date_birth"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "role_id", null: false
+    t.bigint "address_id", null: false
+    t.index ["address_id"], name: "index_users_on_address_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
+  end
+
+  add_foreign_key "emails", "users"
+  add_foreign_key "phones", "users"
   add_foreign_key "product_attrs", "products"
+  add_foreign_key "users", "addresses"
+  add_foreign_key "users", "roles"
 end

@@ -1,2 +1,0 @@
-class ProductGroup < ApplicationRecord
-end

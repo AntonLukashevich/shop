@@ -10,3 +10,4 @@ class ProductAttrsController < ApplicationController
       params.require(:product_attr).permit(:title, :value)
     end
 end
+
