@@ -1,15 +1,101 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Shop</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+    <% if  user_signed_in? && current_user.admin %>
+    <ul class="nav nav-tabs container main">
+        
+        <li class="nav-item">
+            <%= link_to 'Продукция', products_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Категории товаров', categories_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Заказчики', suppliers_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Роли', roles_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Addresses', addresses_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Пользователи', users_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Phones', phones_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Emails', emails_path, class: "nav-link"  %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Торговые точки', outlets_path, class: "nav-link"%>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Orders', orders_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Склад', storehouses_path, class: "nav-link" %>
+        </li>
+        
+    </ul>
+    <% end %>
+    <ul class="nav nav-pills justify-content-end container main">
+        <li class="nav-item">
+            <%= link_to 'Главная', home_path, class: "nav-link" %>
+        </li>
+        <% if user_signed_in? %>
+        <li class="nav-item">
+            <%=link_to 'Выход' , destroy_user_session_path, method: :delete, class: "nav-link" %>
+        </li>
+        <% else%>
+        <li class="nav-item">
+            <%=link_to 'Вход' , new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%=link_to 'Регистрация' , new_user_registration_path, class: "nav-link" %>
+        </li>
+        <% end %>
+    </ul>
+    
+    <div class="container">
+        <hr color="#DCDCDC">
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <a class="navbar-brand" href="<%= guitars_path=%>">Гитары</a>
+            <a class="navbar-brand" href="<%= boweds_path=%>">Смычковые</a>
+            <a class="navbar-brand" href="<%= winds_path=%>">Духовые</a>
+            <a class="navbar-brand" href="<%= drums_path=%>">Ударные</a>
+            <a class="navbar-brand" href="<%= keyboards_path=%>">Клавишные</a>
+            <a class="navbar-brand" href="<%= folks_path=%>">Народные</a>
+            <a class="navbar-brand" href="<%= technics_path=%>">Техника</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="<%= guitars_path=%>">Гитары</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <hr color="#DCDCDC">
+    </div>
+    <div class="container main">
+        <%= yield %>
+    </div>
+    <p class="notice">
+        <%= notice %>
+    </p>
+    <p class="alert">
+        <%= alert %>
+    </p>
+</body>
+
 </html>

@@ -1,0 +1,49 @@
+<% @guitars.each do |guitar| %>
+<tr>
+    <td>
+      <article class="post">
+        <h2><%= link_to guitar.title, guitar_path(guitar) %></h2>
+        <small>
+            <time>
+                <%= guitar.created_at.to_date.strftime("%d %B, %Y") %></time>
+                <% if user_signed_in?%>
+            |
+            <%= link_to 'Изменить', edit_guitar_path(guitar) %>
+            |
+            <%= link_to 'Удалить', guitar_path(guitar), method: :delete, data: { confirm: 'Вы уверены?' } %>
+            <% end%>
+        </small>
+      </article>
+    </td>
+</tr>
+<br>
+<% end %>
+<!--  
+<hr color="#92e5f7">
+<div class="tableg">
+    <div class="tbodyg">
+        <div class="rowg">
+            <div class="cellg">
+                <%= image_tag("guitars.jpg",:alt =>"guitars",style:'height:15vw;width:17vw;')%><br>
+                гитары</div>
+            <div class="cellg">
+                <%= image_tag("plasters1.jpg",:alt =>"accessories",style:'height:15vw;width:17vw;')%><br>
+                аксессуары</div>
+        </div>
+        <div class="rowg">
+            <div class="cellg">
+                <%= image_tag("strings1.jpg",:alt =>"strings",style:'height:15vw;width:17vw;')%><br>
+                струны</div>
+            <div class="cellg">
+                <%= image_tag("pedals.jpg",:alt =>"pedals",style:'height:15vw;width:17vw;')%><br>
+                педали</div>
+        </div>
+    </div>
+</div>
+<hr color="#92e5f7">
+
+
+
+<br>
+<hr color="#92e5f7">
+<%= link_to 'Главная', controller: 'welcome' %>-->

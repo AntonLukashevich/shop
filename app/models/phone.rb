@@ -1,3 +1,6 @@
 class Phone < ApplicationRecord
-	belong_to: user
+	belongs_to :user
+
+		validates :phone, presence: true,
+                    length: { minimum: 7 }
 end

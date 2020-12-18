@@ -1,0 +1,14 @@
+
+<article clsas="post">
+	<section class="post-head">
+    <h2><%= link_to @guitar.title, guitar_path(@guitar) %></h2>
+    <small>
+      <time><%= @guitar.created_at.to_date.strftime("%d %B, %Y") %></time>
+        |
+        <%= link_to 'Изменить', edit_guitar_path(@guitar) %>
+        |
+        <%= link_to 'Удалить', guitar_path(@guitar), method: :delete, data: { confirm: 'Вы уверены?' } %>
+
+    </small>
+  </section>
+</article>

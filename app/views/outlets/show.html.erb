@@ -1,0 +1,39 @@
+<p>
+    <strong>Название:</strong>
+    <%= @outlet.title %><br>
+    <strong>Адрес:</strong>
+    <%= @outlet.address %>
+</p>
+<h5>Список товаров на точке:</h5>
+<% @outlet.outlet_lists.each do |list| %>
+<div>
+    <%= Product.where(:id => list.product_id).pluck(:title).first%> --
+    <%= Category.joins(:product).where(products: {:id => list.product_id}).pluck(:title).first%>
+</div>
+<% end %>
+<% if current_user.admin %>
+<div class="add_attr">
+    <h3>Добавить товар на точку:</h3>
+    <%= form_with(model: [ @outlet, @outlet.outlet_lists.build ], local: true) do |form| %>
+    <div class="form-group">
+        <strong>
+            <%= form.label :Инструмент%></strong><br>
+        <%= form.collection_select :product_id, Product.where(status: 'Store').order(:title), :id,:title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= form.label :Количество %><br>
+        <%= form.text_field :count, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= form.label :Цена %><br>
+        <%= form.text_field :price, class: 'form-control' %>
+    </div><br>
+    <div class="form-group">
+        <!--    @outlet_list.price = 1 -->
+        <%= form.submit 'Добавить',  class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+</div>
+<% end %>
+<br>
+<%= link_to 'Назад', outlets_path,  class: 'btn btn-outline-secondary' %>

@@ -1,0 +1,24 @@
+
+<%= link_to 'Добавить роль', new_role_path,  class: 'btn btn-success' %><br><br>
+<h1>Список ролей</h1>
+<table>
+  <div>ID   Название</div>
+    <% @roles.each do |role| %>
+    <tr class="list">
+      <td>
+        <%= role.id%>
+      </td>
+        <td>
+            <%= role.title %>
+        </td>
+        <td>
+            <%= link_to 'Изменить', edit_role_path(role), class: "btn btn-secondary btn-sm" %>
+        </td>
+        <td>
+            <%= link_to 'Удалить', role_path(role), class: "btn btn-secondary btn-sm",
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+        </td>
+    </tr>
+    <% end %>
+</table>

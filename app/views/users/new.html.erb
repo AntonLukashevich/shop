@@ -1,0 +1,107 @@
+<!-- <h1>New User</h1>
+
+<%= form_with scope: :user, url:users_path,local: true do |form| %>
+
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :title %>
+  <p>
+
+  	<p>
+    <%= form.label :date_birth %><br>
+    <%= form.text_field :date_birth %>
+  <p>
+
+  	<p>
+    <%= form.label :role %><br>
+    <%= form.text_field :role_id %>
+  <p>
+
+  	<p>
+    <%= form.label :address %><br>
+    <%= form.text_field :address_id %>
+  <p>
+
+
+    <%= form.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Back',users_path %>
+ -->
+
+ <h2>Регистрация</h2>
+
+<%= form_for @user do |f| %>
+  <%= render "devise/shared/error_messages", resource: @user %>
+
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :Пароль %>
+    <% if @minimum_password_length %>
+    <em>(минимальное количество символов: <%= @minimum_password_length %> )</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Подтверждение пароля' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <hr color="#DCDCDC">
+  
+  <div class="form-group">
+    <%= f.label 'Имя Фамилия' %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <br>
+
+    <div class="form-group">
+    <%= f.label 'Дата рождения(гггг-мм-дд)' %><br>
+    <%= f.text_field :date_birth, class: "form-control" %>
+  </div>
+  <br>
+<!--   <div class="form-group">
+    <%= f.label 'Роль' %>
+    <%= f.collection_select :role_id, Role.order(:title), :id,:title, class: 'form-control' %>
+  </div> -->
+  <br>
+  <div class="form-group">
+    <%= f.fields_for :address do |builder| %>
+    <div class="field">
+      <%= builder.label 'Адрес' %>
+      <%= builder.text_field :address, class: 'form-control' %>
+    </div>
+   <% end %>
+  </div>
+  <hr color="#DCDCDC">
+
+
+  <div class="actions form-group">
+    <%= f.submit "Зарегистрироваться", class: "btn btn-primary" %>
+    <%= link_to 'Назад', home_path, class: 'btn btn-outline-secondary' %>
+  </div>
+
+<% end %>
+
+<%#= render "devise/shared/links" %>

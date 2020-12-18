@@ -1,0 +1,25 @@
+<h1>Народные:</h1>
+
+
+<% @folks.each do |folk| %>
+<tr>
+    <td>
+      <article class="post">
+        <h2><%= link_to folk.title, folk_path(folk) %></h2>
+        <small>
+            <time>
+                <%= folk.created_at.to_date.strftime("%d %B, %Y") %></time>
+                <% if user_signed_in?%>
+            |
+            <%= link_to 'Изменить', edit_folk_path(folk) %>
+            |
+            <%= link_to 'Удалить', folk_path(folk), method: :delete, data: { confirm: 'Вы уверены?' } %>
+            <%end%>
+        </small>
+      </article>
+    </td>
+</tr>
+<br>
+<% end %>
+
+

@@ -1,0 +1,2 @@
+module OutletListsHelper
+end

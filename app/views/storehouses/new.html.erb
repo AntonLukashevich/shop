@@ -1,0 +1,36 @@
+<h1>Новый инструмент</h1>
+
+<%= form_with scope: :storehouse, url:storehouses_path,local: true do |form| %>
+
+  <% if @storehouse.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@storehouse.errors.count, "error") %> prohibited
+        this storehouse from being saved:
+      </h2>
+      <ul>
+        <% @storehouse.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= form.label :Инструмент%></strong><br>
+        <%= form.collection_select :product_id, Product.where(status: 'Supplier').order(:title), :id,:title, class: 'form-control' %>
+        <br>
+    <%= form.label :Количество %><br>
+    <%= form.text_field :count, class: 'form-control' %>
+
+    
+  </div>
+<br>
+  <div class="form-group">
+    <%= form.submit 'Добавить', class: 'btn btn-primary' %>
+    <%= link_to 'Назад', storehouses_path, class: 'btn btn-outline-secondary' %>
+  </div>
+
+<% end %>
+

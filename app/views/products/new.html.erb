@@ -1,15 +1,28 @@
-<h1>New Product</h1>
+<h1>Новый товар</h1>
 
-<%= form_with scope: :product, url:products_path,local: true do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :title %>
-  </p>
+<%= form_with scope: :product, html: {multipart: true},  url:products_path,local: true do |form| %>
+  <div class="form-group">
+    <%= form.label 'Название:' %><br>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div>
+    <%= form.label 'Категория:' %><br>
+    <%= form.collection_select :category_id, Category.order(:title), :id,:title, class: 'form-control' %>
+  </div>
+  <br>
+<!--   <div class="form-group">
+        <%= form.file_field :image %>
+    </div><br> -->
+    <div class="form-group">
+    <%= form.label 'Статус:' %><br>
+    <%= form.text_field :status, class: 'form-control' %>
+  </div>
+  <br>
+    <div class="form-group"> 
+    <%= form.submit 'Добавить', class: 'btn btn-primary' %>
+    <%= link_to 'Назад', products_path, class: 'btn btn-outline-secondary' %>
+  </div>
 
 <% end %>
 
-<%= link_to 'Back', products_path %>

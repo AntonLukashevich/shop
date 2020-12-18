@@ -1,0 +1,25 @@
+<h1>Редактирование:</h1>
+
+<%= form_with model: @product, html: {multipart: true}, local: true do |form| %>
+
+   <div class="form-group">
+    <strong><%= form.label 'Назавние:' %></strong><br>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+  <br>
+  <div class="form-group">
+    <strong><%= form.label 'Категория товара:' %></strong><br>
+     <%= form.collection_select :category_id, Category.order(:title), :id,:title, class: 'form-control' %>
+  </div>
+  <br>
+    <div class="form-group">
+        <strong><%= form.label 'Выберите картинку:' %></strong><br>
+        <%= form.file_field :image %>
+    </div><br>
+
+ <div class="form-group">
+        <%= form.submit 'Обновить', class: 'btn btn-primary' %>
+        <%= link_to 'Назад', products_path, class: 'btn btn-outline-secondary' %>
+    </div>
+<% end %>
+<br>

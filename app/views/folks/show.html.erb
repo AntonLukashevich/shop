@@ -1,0 +1,13 @@
+<p>
+  <strong>Название:</strong>
+  <%= @product.title %>
+</p>
+
+<div><strong>Характеристики:</strong></div>
+<% @product.product_attrs.each do |attrv| %>
+  <%= attrv.title %>:   <u><%= attrv.value %></u><br>  
+<% end %>
+
+
+<hr>
+<%= link_to 'Назад', folks_path, class: 'btn btn-outline-secondary' %>

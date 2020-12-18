@@ -1,0 +1,25 @@
+<h1>Listing phone</h1>
+
+
+<%= link_to 'New phone', new_phone_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+  </tr>
+
+  <% @phones.each do |phone| %>
+    <tr>
+      <td><%= phone.phone %></td>
+      <td><%= link_to 'Show', phone_path(phone) %></td>
+      <td><%= link_to 'Edit', edit_phone_path(phone) %></td>
+      <td><%= link_to 'Destroy', phone_path(phone),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+
+<%= link_to 'Home', controller: 'welcome' %>

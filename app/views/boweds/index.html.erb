@@ -1,0 +1,25 @@
+<h1>Смычковые:</h1>
+
+
+<% @boweds.each do |bowed| %>
+<tr>
+    <td>
+      <article class="post">
+        <h2><%= link_to bowed.title, bowed_path(bowed) %></h2>
+        <small>
+            <time>
+                <%= bowed.created_at.to_date.strftime("%d %B, %Y") %></time>
+            <% if user_signed_in?%>
+            |
+            <%= link_to 'Изменить', edit_bowed_path(bowed) %>
+            |
+            <%= link_to 'Удалить', bowed_path(bowed), method: :delete, data: { confirm: 'Вы уверены?' } %>
+            <% end %>
+        </small>
+      </article>
+    </td>
+</tr>
+<br>
+<% end %>
+
+

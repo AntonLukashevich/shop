@@ -1,0 +1,45 @@
+<div>
+    <strong>Название:</strong>
+    <%= @supplier.title %>
+</div>
+<% @supplier.supplier_lists.each do |list| %>
+<div>
+    | <%= Product.where(:id => list.product_id).pluck(:title).first%> | 
+    <%= Category.joins(:product).where(products: {:id => list.product_id}).pluck(:title).first%> | 
+    Номер документа:<u>
+        <%= list.number_doc %></u> |
+</div>
+<% end %>
+<br>
+
+<div class="add_attr">
+  <strong>Добавить новый продукт:</strong>
+    <%= form_with(model: [ @supplier, @supplier.supplier_lists.build ], local: true) do |form| %>
+     <div class="form-group">
+        <strong><%= form.label :Инструмент%></strong><br>
+        <%= form.collection_select :product_id, Product.where(status: nil).order(:title), :id,:title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <strong><%= form.label :Цена%></strong><br>
+        <%= form.text_field :price, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <strong><%= form.label :Количество %></strong><br>
+        <%= form.text_field :count, class: 'form-control' %>
+    </div><br>
+     <div class="form-group">
+        <strong><%= form.label 'Номер документа'%></strong><br>
+        <%= form.text_field :number_doc, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <strong><%= form.label 'Гаранция (кол-во месяцев)'%></strong><br>
+        <%= form.text_field :guarantee, class: 'form-control' %>
+    </div>
+    <br>
+    <div class="form-group">
+        <%= form.submit 'Добавить', class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+</div>
+<br>
+<%= link_to 'Назад', suppliers_path, class: 'btn btn-outline-secondary' %>

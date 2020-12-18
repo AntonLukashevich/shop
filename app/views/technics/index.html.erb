@@ -1,0 +1,25 @@
+<h1>Оборудование:</h1>
+
+
+<% @technics.each do |technic| %>
+<tr>
+    <td>
+      <article class="post">
+        <h2><%= link_to technic.title, technic_path(technic) %></h2>
+        <small>
+            <time>
+                <%= technic.created_at.to_date.strftime("%d %B, %Y") %></time>
+                <% if user_signed_in?%>
+            |
+            <%= link_to 'Изменить', edit_technic_path(technic) %>
+            |
+            <%= link_to 'Удалить', technic_path(technic), method: :delete, data: { confirm: 'Вы уверены?' } %>
+            <% end%>
+        </small>
+      </article>
+    </td>
+</tr>
+<br>
+<% end %>
+
+

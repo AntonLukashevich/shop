@@ -1,0 +1,18 @@
+<h1>Новая точка</h1>
+
+<%= form_with scope: :outlet, url:outlets_path,local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :Название %><br>
+    <%= form.text_field :title,  class: 'form-control' %>
+<br>
+    <%= form.label :Адрес %><br>
+    <%= form.text_field :address,  class: 'form-control' %>
+  </div>
+<br>
+  <div class="form-group">
+    <%= form.submit 'Добавить', class: 'btn btn-primary' %>
+    <%= link_to 'Назад', outlets_path, class: 'btn btn-outline-secondary' %>
+  </div>
+
+<% end %>
+

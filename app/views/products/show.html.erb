@@ -1,35 +1,35 @@
-<p>
-  <strong>Title:</strong>
-  <%= @product.title %>
-</p>
-
-
-<h2>Attrs</h2>
-<p><strong>Attr:		</strong><strong>		Value:</strong></p>
+<div>
+    <strong>Название:</strong>
+    <%= @product.title %>
+</div>
 <% @product.product_attrs.each do |attrv| %>
-  <p>
-    
-    <%= attrv.title %> <%= attrv.value %>
-  </p>
-
- 
+<div>
+    <%= attrv.title %>:
+    <u>
+        <%= attrv.value %></u>
+</div>
 <% end %>
+<br>
 
-
-<h2>Add a attr:</h2>
-<%= form_with(model: [ @product, @product.product_attrs.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :title %>
-  </p>
-  <p>
-    <%= form.label :Value %><br>
-    <%= form.text_area :value %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+<% if current_user.admin %>
+<div class="add_attr">
+    <strong>Добавить новую характеристику:</strong>
+    <%= form_with(model: [ @product, @product.product_attrs.build ], local: true) do |form| %>
+    <div class="form-group">
+        <strong>
+            <%= form.label :Название%></strong><br>
+        <%= form.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <strong>
+            <%= form.label :Значение %></strong><br>
+        <%= form.text_field :value, class: 'form-control' %>
+    </div><br>
+    <div class="form-group">
+        <%= form.submit 'Добавить', class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+</div>
 <% end %>
-
-
-<%= link_to 'Back', products_path %>
+<br>
+<%= link_to 'Назад', home_path, class: 'btn btn-outline-secondary' %>

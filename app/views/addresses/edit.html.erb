@@ -1,0 +1,17 @@
+<h1>Edit City</h1>
+
+<%= form_with model: @address, local: true do |form| %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :address %>
+  </p>
+
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Назад', addresses_path ,class: 'btn btn-outline-secondary'%>

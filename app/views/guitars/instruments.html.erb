@@ -1,0 +1,7 @@
+  <% @guitars.each do |guitar| %>
+    <tr>
+      <td><%= guitar.title %></td>
+      <td><%= link_to 'Show', guitar_path(guitar) %></td>
+    </tr>
+    <br>
+  <% end %>

@@ -1,0 +1,59 @@
+// Place all the styles related to the guitars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.tableg{
+	width: 63%;
+	display: table;
+	border-collapse: collapse;
+	margin-left: 17%;
+	
+
+}
+
+.tbodyg{
+	display: table-row-group;
+}
+
+.rowg{
+	display: table-row;
+
+}
+
+.cellg{
+	border: 3px solid black;
+	border-color: #92e5f7;
+	display: table-cell;
+	text-align: center;
+	height: 40%;
+	font: 150% menu;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-style: bold;
+	padding: 1%
+}
+
+#main{
+	color: #FFFAFA;
+}
+
+article.post{
+	margin-bottom: 1em;
+	padding: 1em 0;
+	border-bottom: 1px solid #92e5f7;
+}
+
+h2{
+	margin-bottom: 0;
+}
+
+link_to.g{
+	color: red;
+}
+
+.add_attr{
+	margin-bottom: 1em;
+	padding: 1em 0;
+	border-bottom: 1px solid #92e5f7;
+	border-top: 1px solid #92e5f7;
+}

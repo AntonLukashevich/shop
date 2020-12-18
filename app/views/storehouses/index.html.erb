@@ -1,0 +1,32 @@
+<%= link_to 'Добаить товар', new_storehouse_path, class: 'btn btn-success' %><br>
+<h1>Склад</h1>
+            <h5>Список товаров на складе:</h5>
+<table>
+    <tr>
+        <th>Название</th>
+        <th></th>
+    </tr>
+    <% @storehouses.each do |store| %>
+    <tr class="list">
+        <td>
+            <%# @storehouses.each do |list| %>
+            <div>
+                <%= Product.where(:id => store.product_id).pluck(:title).first%> --
+                <%= Category.joins(:product).where(products: {:id => store.product_id}).pluck(:title).first%>
+            </div>
+            <% #end %>
+        </td>
+        <!--         <td>
+            <%= link_to 'Просмотр', storehouse_path(store),class: "btn btn-secondary btn-sm" %>
+        </td> -->
+<!--         <td>
+            <%= link_to 'Изменить', edit_storehouse_path(store),class: "btn btn-secondary btn-sm" %>
+        </td>
+        <td>
+            <%= link_to 'Удалить', storehouse_path(store),class: "btn btn-secondary btn-sm",
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+        </td> -->
+    </tr>
+    <% end %>
+</table>

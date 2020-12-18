@@ -1,0 +1,31 @@
+<p>
+  <strong>Order:</strong>
+  <%= @order.id %><br>
+  <strong>Status:</strong>
+  <%= @order.status %><br>
+  <strong>Full price:</strong>
+  <%= @order.full_price %>
+</p>
+
+<h3>Add a list:</h3>
+<%= form_with(model: [ @order, @order.order_lists.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :order_id%><br>
+    <%= form.text_field :order_id %>
+  </p>
+  <p>
+    <%= form.label :product_id %><br>
+    <%= form.text_area :product_id %>
+  </p>
+  <p>
+    <%= form.label :count %><br>
+    <%= form.text_area :count %>
+  </p>
+
+  <p>
+<!--   	@outlet_list.price = 1 -->
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', orders_path %>

@@ -1,6 +1,19 @@
 class User < ApplicationRecord
-	has_many: phones
-	has_many: emails
-	belong_to: role
-	belong_to: address
+
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable
+         
+	has_many :phones 
+	has_many :orders
+	has_many :emails
+	belongs_to :role
+	belongs_to :address
+	
+	accepts_nested_attributes_for :address, allow_destroy: true
+
+
+	validates :title, presence: true
+                    
 end

@@ -1,3 +1,7 @@
 class Address < ApplicationRecord
-	has_many: users
+	has_one :user
+
+	validates :address, presence: true,
+                    length: { minimum: 2 }
+
 end

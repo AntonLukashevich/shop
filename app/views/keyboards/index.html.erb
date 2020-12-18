@@ -1,0 +1,25 @@
+<h1>Клавишные:</h1>
+
+
+<% @keyboards.each do |keyboard| %>
+<tr>
+    <td>
+      <article class="post">
+        <h2><%= link_to keyboard.title, keyboard_path(keyboard) %></h2>
+        <small>
+            <time>
+                <%= keyboard.created_at.to_date.strftime("%d %B, %Y") %></time>
+                <% if user_signed_in?%>
+            |
+            <%= link_to 'Изменить', edit_keyboard_path(keyboard) %>
+            |
+            <%= link_to 'Удалить', keyboard_path(keyboard), method: :delete, data: { confirm: 'Вы уверены?' } %>
+            <% end%>
+        </small>
+      </article>
+    </td>
+</tr>
+<br>
+<% end %>
+
+

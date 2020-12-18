@@ -1,0 +1,22 @@
+<%= link_to 'Новый торговая точка', new_outlet_path, class: 'btn btn-success' %><br>
+
+<h1 padding="1em">Список торговых точек </h1>
+
+<table>
+  <tr>
+    <th>Название:</th>
+  </tr>
+
+  <% @outlets.each do |outlet| %>
+    <tr class="list">
+      <td><%= outlet.title %></td>
+      <td><%= link_to 'Просмотр', outlet_path(outlet), class: 'btn btn-secondary btn-sm' %></td>
+      <td><%= link_to 'Изменить', edit_outlet_path(outlet), class: 'btn btn-secondary btn-sm' %></td>
+      <td><%= link_to 'Закрыть точку', outlet_path(outlet),class: 'btn btn-secondary btn-sm',
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>
+

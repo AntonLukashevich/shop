@@ -1,0 +1,26 @@
+<%= link_to 'Новый поставщик', new_supplier_path, class: 'btn btn-success' %>
+<h1 padding="1em">Список всех поставщиков</h1>
+<table>
+    <div>ID Название Статус</div>
+    <% @suppliers.each do |supplier| %>
+    <tr class="list">
+        <td>
+            <%= supplier.id %>:
+        </td>
+        <td>
+            <%= supplier.title %>
+        </td>
+        <td>
+            <%= link_to 'Просмотр', supplier_path(supplier), class: 'btn btn-secondary btn-sm' %>
+        </td>
+        <td>
+            <%= link_to 'Изменить', edit_supplier_path(supplier), class: "btn btn-secondary btn-sm" %>
+        </td>
+        <td>
+            <%= link_to 'Удалить', supplier_path(supplier),class: "btn btn-secondary btn-sm",
+              method: :delete,
+              data: { confirm: 'Хотите удалить?' } %>
+        </td>
+    </tr>
+    <% end %>
+</table>

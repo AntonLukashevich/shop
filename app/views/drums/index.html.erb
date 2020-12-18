@@ -1,0 +1,23 @@
+<h1>Ударные:</h1>
+
+
+<% @drums.each do |drum| %>
+<tr>
+    <td>
+      <article class="post">
+        <h2><%= link_to drum.title, drum_path(drum) %></h2>
+        <small>
+            <time>
+                <%= drum.created_at.to_date.strftime("%d %B, %Y") %></time>
+                <% if user_signed_in?%>
+            |
+            <%= link_to 'Изменить', edit_drum_path(drum) %>
+            |
+            <%= link_to 'Удалить', drum_path(drum), method: :delete, data: { confirm: 'Вы уверены?' } %>
+            <%end%>
+        </small>
+      </article>
+    </td>
+</tr>
+<br>
+<% end %>

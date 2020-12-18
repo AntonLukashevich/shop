@@ -1,0 +1,23 @@
+<h1>Духовые:</h1>
+
+
+<% @winds.each do |wind| %>
+<tr>
+    <td>
+      <article class="post">
+        <h2><%= link_to wind.title, wind_path(wind) %></h2>
+        <small>
+            <time>
+                <%= wind.created_at.to_date.strftime("%d %B, %Y") %></time>
+                <% if user_signed_in?%>
+            |
+            <%= link_to 'Изменить', edit_wind_path(wind) %>
+            |
+            <%= link_to 'Удалить', wind_path(wind), method: :delete, data: { confirm: 'Вы уверены?' } %>
+            <% end%>
+        </small>
+      </article>
+    </td>
+</tr>
+<br>
+<% end %>
